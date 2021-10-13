@@ -1,7 +1,6 @@
 package dam.di.ud1.prueba;
 
 import java.awt.CardLayout;
-import java.awt.Container;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,12 +11,12 @@ import java.awt.Container;
  *
  * @author it-ra
  */
-public class Formulario extends javax.swing.JFrame {
+public class Main_frame extends javax.swing.JFrame {
 
     /**
      * Creates new form Formulario
      */
-    public Formulario() {
+    public Main_frame() {
         initComponents();
     }
 
@@ -32,18 +31,20 @@ public class Formulario extends javax.swing.JFrame {
 
         title_container = new javax.swing.JPanel();
         menus_container = new javax.swing.JPanel();
-        mainMenu_container = new javax.swing.JPanel();
+        mainMenu_container0 = new javax.swing.JPanel();
         lounges_button = new javax.swing.JButton();
         rooms_button = new javax.swing.JButton();
-        loungeMenu_container = new javax.swing.JPanel();
+        exit_button0 = new javax.swing.JButton();
+        loungeMenu_container1 = new javax.swing.JPanel();
         loungeManage_button = new javax.swing.JButton();
         loungeBooks_button = new javax.swing.JButton();
-        loungeBooksMenu_container = new javax.swing.JPanel();
+        back_button1 = new javax.swing.JButton();
+        exit_button1 = new javax.swing.JButton();
+        loungeBooksMenu_container2 = new javax.swing.JPanel();
         newBookLounge_button = new javax.swing.JButton();
         rooms_button2 = new javax.swing.JButton();
-        button_container = new javax.swing.JPanel();
-        exit_button = new javax.swing.JButton();
-        back_button = new javax.swing.JButton();
+        back_button2 = new javax.swing.JButton();
+        exit_button2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("mainApp"); // NOI18N
@@ -69,7 +70,7 @@ public class Formulario extends javax.swing.JFrame {
         menus_container.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         menus_container.setLayout(new java.awt.CardLayout());
 
-        mainMenu_container.setBorder(javax.swing.BorderFactory.createTitledBorder("Menú principal"));
+        mainMenu_container0.setBorder(javax.swing.BorderFactory.createTitledBorder("Menú principal"));
 
         lounges_button.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         lounges_button.setText("Lounges ");
@@ -82,30 +83,42 @@ public class Formulario extends javax.swing.JFrame {
         rooms_button.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         rooms_button.setText("Rooms");
 
-        javax.swing.GroupLayout mainMenu_containerLayout = new javax.swing.GroupLayout(mainMenu_container);
-        mainMenu_container.setLayout(mainMenu_containerLayout);
-        mainMenu_containerLayout.setHorizontalGroup(
-            mainMenu_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenu_containerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(mainMenu_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        exit_button0.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        exit_button0.setText("SALIR");
+        exit_button0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exit_button0ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mainMenu_container0Layout = new javax.swing.GroupLayout(mainMenu_container0);
+        mainMenu_container0.setLayout(mainMenu_container0Layout);
+        mainMenu_container0Layout.setHorizontalGroup(
+            mainMenu_container0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenu_container0Layout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
+                .addGroup(mainMenu_container0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rooms_button, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lounges_button, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44))
+            .addGroup(mainMenu_container0Layout.createSequentialGroup()
+                .addComponent(exit_button0)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        mainMenu_containerLayout.setVerticalGroup(
-            mainMenu_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainMenu_containerLayout.createSequentialGroup()
+        mainMenu_container0Layout.setVerticalGroup(
+            mainMenu_container0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainMenu_container0Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(lounges_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rooms_button)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addComponent(exit_button0, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        menus_container.add(mainMenu_container, "card1");
+        menus_container.add(mainMenu_container0, "0");
 
-        loungeMenu_container.setBorder(javax.swing.BorderFactory.createTitledBorder("Lounges"));
+        loungeMenu_container1.setBorder(javax.swing.BorderFactory.createTitledBorder("Lounges"));
 
         loungeManage_button.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         loungeManage_button.setText("Lounge Manage");
@@ -123,98 +136,110 @@ public class Formulario extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout loungeMenu_containerLayout = new javax.swing.GroupLayout(loungeMenu_container);
-        loungeMenu_container.setLayout(loungeMenu_containerLayout);
-        loungeMenu_containerLayout.setHorizontalGroup(
-            loungeMenu_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loungeMenu_containerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(loungeMenu_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        back_button1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        back_button1.setText("Volver");
+        back_button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_button1ActionPerformed(evt);
+            }
+        });
+
+        exit_button1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        exit_button1.setText("SALIR");
+        exit_button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exit_button1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout loungeMenu_container1Layout = new javax.swing.GroupLayout(loungeMenu_container1);
+        loungeMenu_container1.setLayout(loungeMenu_container1Layout);
+        loungeMenu_container1Layout.setHorizontalGroup(
+            loungeMenu_container1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loungeMenu_container1Layout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
+                .addGroup(loungeMenu_container1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loungeBooks_button, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loungeManage_button, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44))
+            .addGroup(loungeMenu_container1Layout.createSequentialGroup()
+                .addComponent(exit_button1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(back_button1))
         );
-        loungeMenu_containerLayout.setVerticalGroup(
-            loungeMenu_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loungeMenu_containerLayout.createSequentialGroup()
+        loungeMenu_container1Layout.setVerticalGroup(
+            loungeMenu_container1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loungeMenu_container1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(loungeManage_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loungeBooks_button)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addGroup(loungeMenu_container1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(exit_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(back_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        menus_container.add(loungeMenu_container, "card2");
+        menus_container.add(loungeMenu_container1, "1");
 
-        loungeBooksMenu_container.setBorder(javax.swing.BorderFactory.createTitledBorder("Book lounge"));
+        loungeBooksMenu_container2.setBorder(javax.swing.BorderFactory.createTitledBorder("Book lounge"));
 
         newBookLounge_button.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         newBookLounge_button.setText("new");
+        newBookLounge_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newBookLounge_buttonActionPerformed(evt);
+            }
+        });
 
         rooms_button2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         rooms_button2.setText("Rooms");
 
-        javax.swing.GroupLayout loungeBooksMenu_containerLayout = new javax.swing.GroupLayout(loungeBooksMenu_container);
-        loungeBooksMenu_container.setLayout(loungeBooksMenu_containerLayout);
-        loungeBooksMenu_containerLayout.setHorizontalGroup(
-            loungeBooksMenu_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loungeBooksMenu_containerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(loungeBooksMenu_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        back_button2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        back_button2.setText("Volver");
+        back_button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_button2ActionPerformed(evt);
+            }
+        });
+
+        exit_button2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        exit_button2.setText("SALIR");
+        exit_button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exit_button2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout loungeBooksMenu_container2Layout = new javax.swing.GroupLayout(loungeBooksMenu_container2);
+        loungeBooksMenu_container2.setLayout(loungeBooksMenu_container2Layout);
+        loungeBooksMenu_container2Layout.setHorizontalGroup(
+            loungeBooksMenu_container2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loungeBooksMenu_container2Layout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
+                .addGroup(loungeBooksMenu_container2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rooms_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newBookLounge_button, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44))
+            .addGroup(loungeBooksMenu_container2Layout.createSequentialGroup()
+                .addComponent(exit_button2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(back_button2))
         );
-        loungeBooksMenu_containerLayout.setVerticalGroup(
-            loungeBooksMenu_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loungeBooksMenu_containerLayout.createSequentialGroup()
+        loungeBooksMenu_container2Layout.setVerticalGroup(
+            loungeBooksMenu_container2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loungeBooksMenu_container2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(newBookLounge_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rooms_button2)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addGroup(loungeBooksMenu_container2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(exit_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(back_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        menus_container.add(loungeBooksMenu_container, "card3");
-
-        button_container.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        exit_button.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        exit_button.setText("SALIR");
-        exit_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exit_buttonActionPerformed(evt);
-            }
-        });
-
-        back_button.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        back_button.setText("Volver");
-        back_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                back_buttonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout button_containerLayout = new javax.swing.GroupLayout(button_container);
-        button_container.setLayout(button_containerLayout);
-        button_containerLayout.setHorizontalGroup(
-            button_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(button_containerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(exit_button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(back_button)
-                .addContainerGap())
-        );
-        button_containerLayout.setVerticalGroup(
-            button_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(button_containerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(button_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(back_button, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        menus_container.add(loungeBooksMenu_container2, "2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,9 +248,8 @@ public class Formulario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(menus_container, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
-                    .addComponent(title_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(button_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(menus_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(title_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -235,9 +259,7 @@ public class Formulario extends javax.swing.JFrame {
                 .addComponent(title_container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menus_container, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(button_container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("mainApp");
@@ -245,13 +267,12 @@ public class Formulario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_buttonActionPerformed
+    private void exit_button0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_button0ActionPerformed
         this.dispose();
-    }//GEN-LAST:event_exit_buttonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exit_button0ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        back_button.setVisible(false);
-
     }//GEN-LAST:event_formWindowOpened
 
     private void loungeBooks_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loungeBooks_buttonActionPerformed
@@ -261,22 +282,42 @@ public class Formulario extends javax.swing.JFrame {
     private void lounges_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lounges_buttonActionPerformed
         CardLayout cl;
         cl = (CardLayout) menus_container.getLayout();
-        cl.show(menus_container, "card2");
-        back_button.setVisible(true);
+        cl.show(menus_container, "1");
     }//GEN-LAST:event_lounges_buttonActionPerformed
-
-    private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
-        CardLayout cl;
-        cl = (CardLayout) menus_container.getLayout();
-        cl.previous(menus_container);
-    }//GEN-LAST:event_back_buttonActionPerformed
 
     private void loungeManage_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loungeManage_buttonActionPerformed
         CardLayout cl;
         cl = (CardLayout) menus_container.getLayout();
-        cl.show(menus_container, "card3");
+        cl.show(menus_container, "2");
 
     }//GEN-LAST:event_loungeManage_buttonActionPerformed
+
+    private void back_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_button1ActionPerformed
+        CardLayout cl;
+        cl = (CardLayout) menus_container.getLayout();
+        cl.show(menus_container, "0");
+    }//GEN-LAST:event_back_button1ActionPerformed
+
+    private void exit_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_button1ActionPerformed
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_exit_button1ActionPerformed
+
+    private void back_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_button2ActionPerformed
+        CardLayout cl;
+        cl = (CardLayout) menus_container.getLayout();
+        cl.show(menus_container, "1");
+    }//GEN-LAST:event_back_button2ActionPerformed
+
+    private void exit_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_button2ActionPerformed
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_exit_button2ActionPerformed
+
+    private void newBookLounge_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBookLounge_buttonActionPerformed
+        LoungeNewBook dialog = new LoungeNewBook(new javax.swing.JFrame(), true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_newBookLounge_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,35 +336,38 @@ public class Formulario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Formulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Formulario().setVisible(true);
+                new Main_frame().setVisible(true);
 
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton back_button;
-    private javax.swing.JPanel button_container;
-    private javax.swing.JButton exit_button;
-    private javax.swing.JPanel loungeBooksMenu_container;
+    private javax.swing.JButton back_button1;
+    private javax.swing.JButton back_button2;
+    private javax.swing.JButton exit_button0;
+    private javax.swing.JButton exit_button1;
+    private javax.swing.JButton exit_button2;
+    private javax.swing.JPanel loungeBooksMenu_container2;
     private javax.swing.JButton loungeBooks_button;
     private javax.swing.JButton loungeManage_button;
-    private javax.swing.JPanel loungeMenu_container;
+    private javax.swing.JPanel loungeMenu_container1;
     private javax.swing.JButton lounges_button;
-    private javax.swing.JPanel mainMenu_container;
+    private javax.swing.JPanel mainMenu_container0;
     private javax.swing.JPanel menus_container;
     private javax.swing.JButton newBookLounge_button;
     private javax.swing.JButton rooms_button;
