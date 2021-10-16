@@ -11,9 +11,9 @@ package dam.di.ud1.t1.interfaz;
  */
 public class LoungeNewBook extends javax.swing.JDialog {
 
-    final static int MAXPROGRES = 7;
+    final static int MAXPROGRES = 8;
 
-    static enum EVENTDATA {
+    public enum CheckedData {
         NAME, TFNO, DATE, TIME, LOUNGE, EVENTTYPE, CUCINETYPE, CANTJORNADAS
     };
     private boolean[] progress;
@@ -98,6 +98,11 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         name_label.setText("Nombre:");
 
+        name_txtfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                name_txtfieldFocusLost(evt);
+            }
+        });
         name_txtfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 name_txtfieldActionPerformed(evt);
@@ -498,8 +503,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void banquete_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_banquete_radioButtonActionPerformed
-        setProgress[]
-    ();
+
     }//GEN-LAST:event_banquete_radioButtonActionPerformed
 
     private void bufet_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bufet_radioButtonActionPerformed
@@ -527,7 +531,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
     }//GEN-LAST:event_needRooms_checkboxActionPerformed
 
     private void name_txtfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_txtfieldActionPerformed
-        // TODO add your handling code here:
+        checkName();
     }//GEN-LAST:event_name_txtfieldActionPerformed
 
     private void congreso_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congreso_radioButtonActionPerformed
@@ -552,6 +556,11 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_fullfill_progressBarStateChanged
+
+    private void name_txtfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_name_txtfieldFocusLost
+        checkName();
+
+    }//GEN-LAST:event_name_txtfieldFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -600,21 +609,14 @@ public class LoungeNewBook extends javax.swing.JDialog {
         this.setSize(WIDTH, 510);
     }
 
-    /**
-     * @return the progress
-     */
-    public boolean[] getProgress() {
-        return progress;
+    private void checkName() {
+        System.out.printf("%s \"%s\" - ", "Actual name: ", name_txtfield.getText());
+        if (name_txtfield.getText().matches("([a-zA-Z]+ ?)+")) {
+            progress[CheckedData.NAME.ordinal()] = true;
+            System.out.printf("%s%n", "es válido");
+        } else {
+            progress[CheckedData.NAME.ordinal()] = false;
+            System.out.printf("%s%n", "no es válido");
+        }
     }
-
-    /**
-     * @param index
-     * @param progress the progress to set
-     */
-    public void setProgress(
-    enum EVENTDATA index, boolean value
-        ) {
-        this.progress[index] = value;
-    }
-
 }

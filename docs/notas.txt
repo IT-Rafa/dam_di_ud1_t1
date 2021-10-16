@@ -1,33 +1,77 @@
 Features:
-1 Crear Ventana Menú
-1.1 Crear "Menú Principal"
+1 Crear "Ventana Menú"
+
+1.1 Incluir "Menú Principal" en "Ventana Menú"
 	1.1.1 Mostrar al iniciar la aplicación
 	1.1.2 Opciones menú (Salones/Habitaciones//Salir)
 	1.1.3 Opción Salir: Cierra aplicación
 	1.1.4 Opción Salones: Reemplaza "Menú Principal" por "Menú Salones"
 	
-1.1 Crear "Menú Salones"
+1.1 Incluir "Menú Salones" en "Ventana Menú"
 	1.1.2 Opciones menú (Reserva Salón/Gestión Salones//Salir/Volver)
 	1.1.3 Opción Salir: Cierra aplicación
 	1.1.4 Opción Volver : Reemplaza "Menú Salones" por "Menú Principal" 
 	1.1.4 Opción Reserva Salón: Reemplaza "Menú Salones" por "Menú Reserva Salón"
 
-1.1 Crear "Menú Reserva Salón"
+1.1 Incluir "Menú Reserva Salón" en "Ventana Menú"
 	1.1.2 Opciones menú (Nueva/Modificar//Salir/Volver)
 	1.1.3 Opción Salir: Cierra aplicación
 	1.1.4 Opción Volver : Reemplaza "Menú Reserva Salón" por "Menú Salones"
-	1.1.4 Opción Nueva: Abre ventana "Nueva reserva salón" (
+	1.1.4 Opción Nueva: Abre nueva ventana "Nueva reserva salón"
+		1.1.4.1 La ventana Menú sigue mostrandose, pero inaccesible hasta cerrar la nueva)
+	
+2 Crear ventana "Nueva reserva salón"
 
-	-
+2.1 Pide nombre de la persona que hace la reserva (texto)
+	2.1.2 Comprueba nombre(Solo texto y espacios) 
+	
+2.2 Pide Tfno de la persona que hace la reserva (texto)
+	2.2.1 Acepta números, espacios y paréntesis
+	2.2.2 Los números se mostrarán con formato: Op(op+99) Ob999 999 999 -> (+34) 999 999 999
+	2.2.3. Solo se almacenan números y serán 9 o 11
 
-1 Pide nombre
-2 Comprueba nombre(Solo texto y espacios) 
-3 Pide Tfno
-  Tfno aparece con espacios (99)999 999 999 (mínimo 9 números)
+2.3 Pide fecha/hora de reserva (fecha/hora)
+	2.3.1 La fecha solo se coge de formulario espacializado
+	2.3.2 La fecha mínima es el dia actual
+	2.3.1 La hora solo se coge de formulario espacializado
+	2.3.2 La hora mínima es la hora actual
+	
+	
+2.4 Pide salón
+	2.4.1 El salón se selecciona dentro de lista externa; Lista de salones)
+	2.4.2 Botón crear salón
+	
+2.5 Pide "Tipo evento"
+	2.5.1 El "Tipo evento" se selecciona dentro de lista interna: banquete, jornada o congreso)
+	2.5.2 Si el "Tipo evento es "congreso" se muestran/activan nuevas peticiones de datos
+		2.5.3.1 Pedir cantidad jornadas
+		2.5.3.2 Pedir si precisa habitaciones.
 
-4 Comprueba tfno(Solo números y espacios. Se almacena sin espacios)
-6 Pide fecha:
-7 Pide salón (Muestra lista; selección solo dentro de lista; Lista externa)
-8 Tipo evento (Muestra lista; selección solo dentro de lista; Lista interna)
-9 Tipo cocina (Muestra lista; selección solo dentro de lista; Lista interna)
-10 Si evento == congreso: Pide nºJornadas
+2.6 Pide "Tipo cocina"
+	2.6.1 El "Tipo evento" se selecciona dentro de lista interna: bufé, carta, pedir cita con el chef o no precisa)
+
+2.7 Mostrar barra progreso con porcentaje de completado del formulario
+	2.7.1 Mostrar barra gráfica con texto interno: "Completado el n% de la reserva"
+	2.7.2 El porcentaje a mostrar depende de los datos introducidos estén correctos
+		- Nombre correcto = +15%
+		- Tfno correcto = +15%
+		- Fecha correcto = +12%	
+		- Hora correcto = +12%	
+		- Salón seleccionado +15%	
+		- Tipo Evento seleccionado
+			- Si Tipo Evento == congreso: Tipo Evento = +10% y jornada != 0 +10%
+			- Si Tipo Evento != congreso: Tipo Evento = +20%
+
+		- Tipo Cocina seleccionada = +11%
+
+2.9 Si dato erróneo, mostrar aviso al introducirlo y poner en rojo
+2.8 Botón guardar deshabilitado
+	2.8.1 Habilitar si barra progreso esta completado
+	2.8.2 Al pulsar mostrar datos para confirmar. con botones aceptar cancelar
+		2.8.2.1 Al pulsar aceptar, cerrar "Nueva reserva salón" (La ventana "Menú Principal" debe activarse)
+		2.8.2.2 Al pulsar cancelar, volver a mostrar ventana "Nueva reserva salón"
+		
+		
+		
+Cambio nombre
+ al pulsar enter o al cambiar tras escribir

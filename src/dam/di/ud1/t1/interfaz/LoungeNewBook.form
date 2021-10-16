@@ -144,6 +144,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="name_txtfield">
               <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="name_txtfieldFocusLost"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="name_txtfieldActionPerformed"/>
               </Events>
             </Component>
