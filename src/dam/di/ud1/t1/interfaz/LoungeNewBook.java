@@ -11,8 +11,11 @@ package dam.di.ud1.t1.interfaz;
  */
 public class LoungeNewBook extends javax.swing.JDialog {
 
-    final static int MAXPROGRES = 6;
-    final static int MAXCONGRESSPROGRES = 8;
+    final static int MAXPROGRES = 7;
+
+    static enum EVENTDATA {
+        NAME, TFNO, DATE, TIME, LOUNGE, EVENTTYPE, CUCINETYPE, CANTJORNADAS
+    };
     private boolean[] progress;
 
     /**
@@ -23,6 +26,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
      */
     public LoungeNewBook(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.progress = new boolean[MAXPROGRES];
         initComponents();
         /*
             1º name
@@ -34,7 +38,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
         --
             7º cant jornadas
             8º precisa habitaciones
-        */
+         */
 
     }
 
@@ -49,7 +53,6 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
         newBookLounge_Container = new javax.swing.JPanel();
         clientData_container = new javax.swing.JPanel();
         name_label = new javax.swing.JLabel();
@@ -495,9 +498,8 @@ public class LoungeNewBook extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void banquete_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_banquete_radioButtonActionPerformed
-        progress = new boolean[MAXPROGRES];
-        
-        desactivateCongress();
+        setProgress[]
+    ();
     }//GEN-LAST:event_banquete_radioButtonActionPerformed
 
     private void bufet_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bufet_radioButtonActionPerformed
@@ -529,25 +531,23 @@ public class LoungeNewBook extends javax.swing.JDialog {
     }//GEN-LAST:event_name_txtfieldActionPerformed
 
     private void congreso_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congreso_radioButtonActionPerformed
-        progress = new boolean[MAXCONGRESSPROGRES];
         activateCongress();    }//GEN-LAST:event_congreso_radioButtonActionPerformed
 
     private void jornada_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jornada_radioButtonActionPerformed
-        progress = new boolean[MAXPROGRES];
         desactivateCongress();    }//GEN-LAST:event_jornada_radioButtonActionPerformed
 
 
     private void fullfill_progressBarAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_fullfill_progressBarAncestorAdded
 
         fullfill_progressBar.setStringPainted(true);
-        fullfill_progressBar.setString(String.format(
-                "Completado %d%% del formulario.\n", progress ));
+        fullfill_progressBar.setString(String.format("Completado %d%% del formulario.\n", 0));
         fullfill_progressBar.setValue(1);
     }//GEN-LAST:event_fullfill_progressBarAncestorAdded
 
     private void fullfill_progressBarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fullfill_progressBarStateChanged
         System.out.printf("bar state = %d; bar Max = %d%n",
                 fullfill_progressBar.getValue(), fullfill_progressBar.getMaximum());
+
         if (fullfill_progressBar.getValue() == fullfill_progressBar.getMaximum()) {
 
         }
@@ -559,7 +559,6 @@ public class LoungeNewBook extends javax.swing.JDialog {
     private javax.swing.JRadioButton bufet_radioButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JRadioButton carta_radioButton;
     private javax.swing.JRadioButton cita_radioButton;
     private javax.swing.JPanel clientData_container;
@@ -599,6 +598,23 @@ public class LoungeNewBook extends javax.swing.JDialog {
     private void desactivateCongress() {
         congress_container.setVisible(false);
         this.setSize(WIDTH, 510);
+    }
+
+    /**
+     * @return the progress
+     */
+    public boolean[] getProgress() {
+        return progress;
+    }
+
+    /**
+     * @param index
+     * @param progress the progress to set
+     */
+    public void setProgress(
+    enum EVENTDATA index, boolean value
+        ) {
+        this.progress[index] = value;
     }
 
 }

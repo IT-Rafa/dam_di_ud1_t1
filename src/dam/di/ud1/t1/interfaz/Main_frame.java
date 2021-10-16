@@ -31,16 +31,16 @@ public class Main_frame extends javax.swing.JFrame {
 
         title_container = new javax.swing.JPanel();
         menus_container = new javax.swing.JPanel();
-        mainMenu_container0 = new javax.swing.JPanel();
+        mainMenu_container_card0 = new javax.swing.JPanel();
         lounges_button = new javax.swing.JButton();
         rooms_button = new javax.swing.JButton();
         exit_button0 = new javax.swing.JButton();
-        loungeMenu_container1 = new javax.swing.JPanel();
+        loungeMenu_container_card1 = new javax.swing.JPanel();
         loungeManage_button = new javax.swing.JButton();
         loungeBooks_button = new javax.swing.JButton();
         back_button1 = new javax.swing.JButton();
         exit_button1 = new javax.swing.JButton();
-        loungeBooksMenu_container2 = new javax.swing.JPanel();
+        loungeBookMenu_container_card2 = new javax.swing.JPanel();
         newBookLounge_button = new javax.swing.JButton();
         rooms_button2 = new javax.swing.JButton();
         back_button2 = new javax.swing.JButton();
@@ -70,7 +70,7 @@ public class Main_frame extends javax.swing.JFrame {
         menus_container.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         menus_container.setLayout(new java.awt.CardLayout());
 
-        mainMenu_container0.setBorder(javax.swing.BorderFactory.createTitledBorder("Menú principal"));
+        mainMenu_container_card0.setBorder(javax.swing.BorderFactory.createTitledBorder("Menú principal"));
 
         lounges_button.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         lounges_button.setText("Salones");
@@ -91,23 +91,23 @@ public class Main_frame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout mainMenu_container0Layout = new javax.swing.GroupLayout(mainMenu_container0);
-        mainMenu_container0.setLayout(mainMenu_container0Layout);
-        mainMenu_container0Layout.setHorizontalGroup(
-            mainMenu_container0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenu_container0Layout.createSequentialGroup()
+        javax.swing.GroupLayout mainMenu_container_card0Layout = new javax.swing.GroupLayout(mainMenu_container_card0);
+        mainMenu_container_card0.setLayout(mainMenu_container_card0Layout);
+        mainMenu_container_card0Layout.setHorizontalGroup(
+            mainMenu_container_card0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenu_container_card0Layout.createSequentialGroup()
                 .addContainerGap(58, Short.MAX_VALUE)
-                .addGroup(mainMenu_container0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainMenu_container_card0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rooms_button, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lounges_button, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44))
-            .addGroup(mainMenu_container0Layout.createSequentialGroup()
+            .addGroup(mainMenu_container_card0Layout.createSequentialGroup()
                 .addComponent(exit_button0)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        mainMenu_container0Layout.setVerticalGroup(
-            mainMenu_container0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainMenu_container0Layout.createSequentialGroup()
+        mainMenu_container_card0Layout.setVerticalGroup(
+            mainMenu_container_card0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainMenu_container_card0Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(lounges_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -116,12 +116,14 @@ public class Main_frame extends javax.swing.JFrame {
                 .addComponent(exit_button0, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        menus_container.add(mainMenu_container0, "0");
+        menus_container.add(mainMenu_container_card0, "0");
 
-        loungeMenu_container1.setBorder(javax.swing.BorderFactory.createTitledBorder("Salones"));
+        loungeMenu_container_card1.setBorder(javax.swing.BorderFactory.createTitledBorder("Salones"));
 
         loungeManage_button.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        loungeManage_button.setText("Reservas salones");
+        loungeManage_button.setText("Reserva salón");
+        loungeManage_button.setToolTipText("");
+        loungeManage_button.setActionCommand("Reserva salon");
         loungeManage_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loungeManage_buttonActionPerformed(evt);
@@ -152,37 +154,37 @@ public class Main_frame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout loungeMenu_container1Layout = new javax.swing.GroupLayout(loungeMenu_container1);
-        loungeMenu_container1.setLayout(loungeMenu_container1Layout);
-        loungeMenu_container1Layout.setHorizontalGroup(
-            loungeMenu_container1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loungeMenu_container1Layout.createSequentialGroup()
+        javax.swing.GroupLayout loungeMenu_container_card1Layout = new javax.swing.GroupLayout(loungeMenu_container_card1);
+        loungeMenu_container_card1.setLayout(loungeMenu_container_card1Layout);
+        loungeMenu_container_card1Layout.setHorizontalGroup(
+            loungeMenu_container_card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loungeMenu_container_card1Layout.createSequentialGroup()
                 .addContainerGap(58, Short.MAX_VALUE)
-                .addGroup(loungeMenu_container1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(loungeMenu_container_card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loungeBooks_button, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loungeManage_button, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44))
-            .addGroup(loungeMenu_container1Layout.createSequentialGroup()
+            .addGroup(loungeMenu_container_card1Layout.createSequentialGroup()
                 .addComponent(exit_button1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(back_button1))
         );
-        loungeMenu_container1Layout.setVerticalGroup(
-            loungeMenu_container1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loungeMenu_container1Layout.createSequentialGroup()
+        loungeMenu_container_card1Layout.setVerticalGroup(
+            loungeMenu_container_card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loungeMenu_container_card1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(loungeManage_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loungeBooks_button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addGroup(loungeMenu_container1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(loungeMenu_container_card1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exit_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(back_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        menus_container.add(loungeMenu_container1, "1");
+        menus_container.add(loungeMenu_container_card1, "1");
 
-        loungeBooksMenu_container2.setBorder(javax.swing.BorderFactory.createTitledBorder("Reserva salones"));
+        loungeBookMenu_container_card2.setBorder(javax.swing.BorderFactory.createTitledBorder("Reserva salón"));
 
         newBookLounge_button.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         newBookLounge_button.setText("Nueva");
@@ -212,35 +214,35 @@ public class Main_frame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout loungeBooksMenu_container2Layout = new javax.swing.GroupLayout(loungeBooksMenu_container2);
-        loungeBooksMenu_container2.setLayout(loungeBooksMenu_container2Layout);
-        loungeBooksMenu_container2Layout.setHorizontalGroup(
-            loungeBooksMenu_container2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loungeBooksMenu_container2Layout.createSequentialGroup()
+        javax.swing.GroupLayout loungeBookMenu_container_card2Layout = new javax.swing.GroupLayout(loungeBookMenu_container_card2);
+        loungeBookMenu_container_card2.setLayout(loungeBookMenu_container_card2Layout);
+        loungeBookMenu_container_card2Layout.setHorizontalGroup(
+            loungeBookMenu_container_card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loungeBookMenu_container_card2Layout.createSequentialGroup()
                 .addContainerGap(58, Short.MAX_VALUE)
-                .addGroup(loungeBooksMenu_container2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(loungeBookMenu_container_card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rooms_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newBookLounge_button, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44))
-            .addGroup(loungeBooksMenu_container2Layout.createSequentialGroup()
+            .addGroup(loungeBookMenu_container_card2Layout.createSequentialGroup()
                 .addComponent(exit_button2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(back_button2))
         );
-        loungeBooksMenu_container2Layout.setVerticalGroup(
-            loungeBooksMenu_container2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loungeBooksMenu_container2Layout.createSequentialGroup()
+        loungeBookMenu_container_card2Layout.setVerticalGroup(
+            loungeBookMenu_container_card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loungeBookMenu_container_card2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(newBookLounge_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rooms_button2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addGroup(loungeBooksMenu_container2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(loungeBookMenu_container_card2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exit_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(back_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        menus_container.add(loungeBooksMenu_container2, "2");
+        menus_container.add(loungeBookMenu_container_card2, "2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -363,12 +365,12 @@ public class Main_frame extends javax.swing.JFrame {
     private javax.swing.JButton exit_button0;
     private javax.swing.JButton exit_button1;
     private javax.swing.JButton exit_button2;
-    private javax.swing.JPanel loungeBooksMenu_container2;
+    private javax.swing.JPanel loungeBookMenu_container_card2;
     private javax.swing.JButton loungeBooks_button;
     private javax.swing.JButton loungeManage_button;
-    private javax.swing.JPanel loungeMenu_container1;
+    private javax.swing.JPanel loungeMenu_container_card1;
     private javax.swing.JButton lounges_button;
-    private javax.swing.JPanel mainMenu_container0;
+    private javax.swing.JPanel mainMenu_container_card0;
     private javax.swing.JPanel menus_container;
     private javax.swing.JButton newBookLounge_button;
     private javax.swing.JButton rooms_button;

@@ -86,7 +86,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="mainMenu_container0">
+        <Container class="javax.swing.JPanel" name="mainMenu_container_card0">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -163,7 +163,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="loungeMenu_container1">
+        <Container class="javax.swing.JPanel" name="loungeMenu_container_card1">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -217,7 +217,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Verdana" size="24" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Reservas salones"/>
+                <Property name="text" type="java.lang.String" value="Reserva sal&#xf3;n"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="actionCommand" type="java.lang.String" value="Reserva salon"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loungeManage_buttonActionPerformed"/>
@@ -258,11 +260,11 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="loungeBooksMenu_container2">
+        <Container class="javax.swing.JPanel" name="loungeBookMenu_container_card2">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Reserva salones"/>
+                <TitledBorder title="Reserva sal&#xf3;n"/>
               </Border>
             </Property>
           </Properties>

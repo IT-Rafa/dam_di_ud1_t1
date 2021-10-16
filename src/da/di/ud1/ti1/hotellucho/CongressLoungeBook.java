@@ -9,7 +9,7 @@ package da.di.ud1.ti1.hotellucho;
  *
  * @author rafa
  */
-public class CongressLoungeBook1 extends LoungeBook{
+public class CongressLoungeBook extends LoungeBook{
     private int catJornadas;
     private boolean needRooms;
 
