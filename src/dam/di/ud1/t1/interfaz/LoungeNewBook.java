@@ -5,18 +5,32 @@
  */
 package dam.di.ud1.t1.interfaz;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JList;
+import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.basic.BasicComboPopup;
+
 /**
  *
  * @author it-ra
  */
 public class LoungeNewBook extends javax.swing.JDialog {
 
-    final static int MAXPROGRES = 8;
-
-    public enum CheckedData {
-        NAME, TFNO, DATE, TIME, LOUNGE, EVENTTYPE, CUCINETYPE, CANTJORNADAS
+    public enum BarIndex {
+        NAME, PHONE, DATETIME, LOUNGE, EVENTTYPE, CUISINETYPE, DAYSCONGRESS
     };
-    private boolean[] progress;
+    private boolean[] barProgress;
+
+    JSpinner mySpinner = new JSpinner(new SpinnerDateModel(new Date(), null, null, Calendar.MONTH));
 
     /**
      * Creates new form LoungeNewBook
@@ -26,7 +40,9 @@ public class LoungeNewBook extends javax.swing.JDialog {
      */
     public LoungeNewBook(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.progress = new boolean[MAXPROGRES];
+        this.barProgress = new boolean[BarIndex.values().length];
+        JSpinner.DateEditor editor = new JSpinner.DateEditor(mySpinner, "dd/MM/yy");
+        mySpinner.setEditor(editor);
         initComponents();
         /*
             1º name
@@ -51,14 +67,14 @@ public class LoungeNewBook extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
+        eventType_buttonGroup = new javax.swing.ButtonGroup();
+        cuisineType_buttonGroup = new javax.swing.ButtonGroup();
         newBookLounge_Container = new javax.swing.JPanel();
         clientData_container = new javax.swing.JPanel();
         name_label = new javax.swing.JLabel();
-        name_txtfield = new javax.swing.JTextField();
-        tfno_label = new javax.swing.JLabel();
-        tfno_formatTxtField = new javax.swing.JFormattedTextField();
+        name_txtField = new javax.swing.JTextField();
+        phone_label = new javax.swing.JLabel();
+        phone_txtField = new javax.swing.JTextField();
         dataEvent_container = new javax.swing.JPanel();
         dataLounge_container = new javax.swing.JPanel();
         date_label = new javax.swing.JLabel();
@@ -68,20 +84,20 @@ public class LoungeNewBook extends javax.swing.JDialog {
         detailEvent_container = new javax.swing.JPanel();
         evenType_container = new javax.swing.JPanel();
         evenType_label = new javax.swing.JLabel();
-        banquete_radioButton = new javax.swing.JRadioButton();
-        jornada_radioButton = new javax.swing.JRadioButton();
-        congreso_radioButton = new javax.swing.JRadioButton();
+        banquet_radioButton = new javax.swing.JRadioButton();
+        day_radioButton = new javax.swing.JRadioButton();
+        congress_radioButton = new javax.swing.JRadioButton();
         congress_container = new javax.swing.JPanel();
-        jornadasNum_label = new javax.swing.JLabel();
-        jornadasNum_slider = new javax.swing.JSlider();
+        congressDays_label = new javax.swing.JLabel();
+        congressDays_slider = new javax.swing.JSlider();
         needRooms_label = new javax.swing.JLabel();
         needRooms_checkbox = new javax.swing.JCheckBox();
         needRooms_checkbox.putClientProperty("JComponent.sizeVariant", "large");
-        cucine_container = new javax.swing.JPanel();
-        cucine_label = new javax.swing.JLabel();
-        bufet_radioButton = new javax.swing.JRadioButton();
-        carta_radioButton = new javax.swing.JRadioButton();
-        cita_radioButton = new javax.swing.JRadioButton();
+        cuisine_container = new javax.swing.JPanel();
+        cuisine_label = new javax.swing.JLabel();
+        buffet_radioButton = new javax.swing.JRadioButton();
+        aLaCarte_radioButton = new javax.swing.JRadioButton();
+        chef_radioButton = new javax.swing.JRadioButton();
         noNeed_radioButton = new javax.swing.JRadioButton();
         fullfill_progressBar = new javax.swing.JProgressBar();
         save_button = new javax.swing.JButton();
@@ -98,24 +114,29 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         name_label.setText("Nombre:");
 
-        name_txtfield.addFocusListener(new java.awt.event.FocusAdapter() {
+        name_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                name_txtfieldFocusLost(evt);
+                name_txtFieldFocusLost(evt);
             }
         });
-        name_txtfield.addActionListener(new java.awt.event.ActionListener() {
+        name_txtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                name_txtfieldActionPerformed(evt);
+                name_txtFieldActionPerformed(evt);
             }
         });
 
-        tfno_label.setText("Teléfono:");
+        phone_label.setText("Teléfono:");
 
-        try {
-            tfno_formatTxtField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("### ### ###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        phone_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                phone_txtFieldFocusLost(evt);
+            }
+        });
+        phone_txtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phone_txtFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout clientData_containerLayout = new javax.swing.GroupLayout(clientData_container);
         clientData_container.setLayout(clientData_containerLayout);
@@ -125,12 +146,12 @@ public class LoungeNewBook extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(clientData_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(name_label)
-                    .addComponent(tfno_label))
+                    .addComponent(phone_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(clientData_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(name_txtfield)
+                    .addComponent(name_txtField, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
                     .addGroup(clientData_containerLayout.createSequentialGroup()
-                        .addComponent(tfno_formatTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(phone_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -139,12 +160,12 @@ public class LoungeNewBook extends javax.swing.JDialog {
             .addGroup(clientData_containerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(clientData_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(name_txtfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(name_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(clientData_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfno_label)
-                    .addComponent(tfno_formatTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(phone_label)
+                    .addComponent(phone_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         dataEvent_container.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos evento"));
@@ -153,14 +174,19 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         date_label.setText("Fecha");
 
-        date_spinner.setModel(new javax.swing.SpinnerDateModel());
+        date_spinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(1634437603377L), null, java.util.Calendar.DAY_OF_MONTH));
+        date_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                date_spinnerStateChanged(evt);
+            }
+        });
 
         lounge_label.setText("Salón:");
 
         lounge_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendiente", "Salon Habana", "Salón Otro" }));
-        lounge_comboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lounge_comboBoxActionPerformed(evt);
+        lounge_comboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                lounge_comboBoxItemStateChanged(evt);
             }
         });
 
@@ -172,11 +198,11 @@ public class LoungeNewBook extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(date_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(date_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(date_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lounge_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lounge_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lounge_comboBox, 0, 194, Short.MAX_VALUE)
                 .addContainerGap())
         );
         dataLounge_containerLayout.setVerticalGroup(
@@ -198,27 +224,27 @@ public class LoungeNewBook extends javax.swing.JDialog {
         evenType_label.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         evenType_label.setText("Tipo evento:");
 
-        buttonGroup1.add(banquete_radioButton);
-        banquete_radioButton.setText("Banquete");
-        banquete_radioButton.addActionListener(new java.awt.event.ActionListener() {
+        eventType_buttonGroup.add(banquet_radioButton);
+        banquet_radioButton.setText("Banquete");
+        banquet_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                banquete_radioButtonActionPerformed(evt);
+                banquet_radioButtonActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jornada_radioButton);
-        jornada_radioButton.setText("Jornada");
-        jornada_radioButton.addActionListener(new java.awt.event.ActionListener() {
+        eventType_buttonGroup.add(day_radioButton);
+        day_radioButton.setText("Jornada");
+        day_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jornada_radioButtonActionPerformed(evt);
+                day_radioButtonActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(congreso_radioButton);
-        congreso_radioButton.setText("Congreso");
-        congreso_radioButton.addActionListener(new java.awt.event.ActionListener() {
+        eventType_buttonGroup.add(congress_radioButton);
+        congress_radioButton.setText("Congreso");
+        congress_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                congreso_radioButtonActionPerformed(evt);
+                congress_radioButtonActionPerformed(evt);
             }
         });
 
@@ -231,9 +257,9 @@ public class LoungeNewBook extends javax.swing.JDialog {
                     .addGroup(evenType_containerLayout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addGroup(evenType_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(congreso_radioButton)
-                            .addComponent(jornada_radioButton)
-                            .addComponent(banquete_radioButton)))
+                            .addComponent(congress_radioButton)
+                            .addComponent(day_radioButton)
+                            .addComponent(banquet_radioButton)))
                     .addGroup(evenType_containerLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(evenType_label)))
@@ -245,11 +271,11 @@ public class LoungeNewBook extends javax.swing.JDialog {
                 .addGap(19, 19, 19)
                 .addComponent(evenType_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(banquete_radioButton)
+                .addComponent(banquet_radioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jornada_radioButton)
+                .addComponent(day_radioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(congreso_radioButton)
+                .addComponent(congress_radioButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -258,16 +284,16 @@ public class LoungeNewBook extends javax.swing.JDialog {
         congress_container.setPreferredSize(new java.awt.Dimension(416, 120));
         congress_container.setVisible(false);
 
-        jornadasNum_label.setText("Nº Jornadas congreso:");
+        congressDays_label.setText("Nº Jornadas congreso:");
 
-        jornadasNum_slider.setMajorTickSpacing(10);
-        jornadasNum_slider.setMaximum(30);
-        jornadasNum_slider.setMinorTickSpacing(1);
-        jornadasNum_slider.setPaintLabels(true);
-        jornadasNum_slider.setPaintTicks(true);
-        jornadasNum_slider.setSnapToTicks(true);
-        jornadasNum_slider.setToolTipText("");
-        jornadasNum_slider.setValue(20);
+        congressDays_slider.setMajorTickSpacing(10);
+        congressDays_slider.setMaximum(30);
+        congressDays_slider.setMinorTickSpacing(1);
+        congressDays_slider.setPaintLabels(true);
+        congressDays_slider.setPaintTicks(true);
+        congressDays_slider.setSnapToTicks(true);
+        congressDays_slider.setToolTipText("");
+        congressDays_slider.setValue(20);
 
         needRooms_label.setText("Precisa habitaciones:");
         needRooms_label.setToolTipText("");
@@ -288,9 +314,9 @@ public class LoungeNewBook extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(congress_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(congress_containerLayout.createSequentialGroup()
-                        .addComponent(jornadasNum_label, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(congressDays_label, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jornadasNum_slider, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(congressDays_slider, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(congress_containerLayout.createSequentialGroup()
                         .addComponent(needRooms_label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -302,8 +328,8 @@ public class LoungeNewBook extends javax.swing.JDialog {
             .addGroup(congress_containerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(congress_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jornadasNum_slider, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jornadasNum_label))
+                    .addComponent(congressDays_slider, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(congressDays_label))
                 .addGap(18, 18, 18)
                 .addGroup(congress_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(needRooms_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,37 +339,37 @@ public class LoungeNewBook extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        cucine_container.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cuisine_container.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        cucine_label.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        cucine_label.setText("Tipo cocina:");
-        cucine_label.setToolTipText("");
+        cuisine_label.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        cuisine_label.setText("Tipo cocina:");
+        cuisine_label.setToolTipText("");
 
-        buttonGroup2.add(bufet_radioButton);
-        bufet_radioButton.setText("Bufét");
-        bufet_radioButton.addActionListener(new java.awt.event.ActionListener() {
+        cuisineType_buttonGroup.add(buffet_radioButton);
+        buffet_radioButton.setText("Bufé");
+        buffet_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bufet_radioButtonActionPerformed(evt);
+                buffet_radioButtonActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(carta_radioButton);
-        carta_radioButton.setText("Carta");
-        carta_radioButton.addActionListener(new java.awt.event.ActionListener() {
+        cuisineType_buttonGroup.add(aLaCarte_radioButton);
+        aLaCarte_radioButton.setText("Carta");
+        aLaCarte_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                carta_radioButtonActionPerformed(evt);
+                aLaCarte_radioButtonActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(cita_radioButton);
-        cita_radioButton.setText("Cita con chef");
-        cita_radioButton.addActionListener(new java.awt.event.ActionListener() {
+        cuisineType_buttonGroup.add(chef_radioButton);
+        chef_radioButton.setText("Cita con chef");
+        chef_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cita_radioButtonActionPerformed(evt);
+                chef_radioButtonActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(noNeed_radioButton);
+        cuisineType_buttonGroup.add(noNeed_radioButton);
         noNeed_radioButton.setText("No precisa");
         noNeed_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,35 +377,35 @@ public class LoungeNewBook extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout cucine_containerLayout = new javax.swing.GroupLayout(cucine_container);
-        cucine_container.setLayout(cucine_containerLayout);
-        cucine_containerLayout.setHorizontalGroup(
-            cucine_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cucine_containerLayout.createSequentialGroup()
-                .addGroup(cucine_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cucine_containerLayout.createSequentialGroup()
+        javax.swing.GroupLayout cuisine_containerLayout = new javax.swing.GroupLayout(cuisine_container);
+        cuisine_container.setLayout(cuisine_containerLayout);
+        cuisine_containerLayout.setHorizontalGroup(
+            cuisine_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cuisine_containerLayout.createSequentialGroup()
+                .addGroup(cuisine_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cuisine_containerLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(cucine_label))
-                    .addGroup(cucine_containerLayout.createSequentialGroup()
+                        .addComponent(cuisine_label))
+                    .addGroup(cuisine_containerLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addGroup(cucine_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(cuisine_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(noNeed_radioButton)
-                            .addComponent(cita_radioButton)
-                            .addComponent(carta_radioButton)
-                            .addComponent(bufet_radioButton))))
+                            .addComponent(chef_radioButton)
+                            .addComponent(aLaCarte_radioButton)
+                            .addComponent(buffet_radioButton))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
-        cucine_containerLayout.setVerticalGroup(
-            cucine_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cucine_containerLayout.createSequentialGroup()
+        cuisine_containerLayout.setVerticalGroup(
+            cuisine_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cuisine_containerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cucine_label, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cuisine_label, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bufet_radioButton)
+                .addComponent(buffet_radioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(carta_radioButton)
+                .addComponent(aLaCarte_radioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cita_radioButton)
+                .addComponent(chef_radioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(noNeed_radioButton)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -395,7 +421,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
                     .addGroup(detailEvent_containerLayout.createSequentialGroup()
                         .addComponent(evenType_container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cucine_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cuisine_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(congress_container, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -405,7 +431,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(detailEvent_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(evenType_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cucine_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cuisine_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(congress_container, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                 .addContainerGap())
@@ -502,102 +528,185 @@ public class LoungeNewBook extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void banquete_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_banquete_radioButtonActionPerformed
+    private void buffet_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buffet_radioButtonActionPerformed
+        JRadioButton selectedItem = (JRadioButton) evt.getSource();
+        cucineTypeChanged(selectedItem);
+    }//GEN-LAST:event_buffet_radioButtonActionPerformed
 
-    }//GEN-LAST:event_banquete_radioButtonActionPerformed
+    private void aLaCarte_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aLaCarte_radioButtonActionPerformed
+                JRadioButton selectedItem = (JRadioButton) evt.getSource();
+        cucineTypeChanged(selectedItem);
+    }//GEN-LAST:event_aLaCarte_radioButtonActionPerformed
 
-    private void bufet_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bufet_radioButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bufet_radioButtonActionPerformed
-
-    private void carta_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carta_radioButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_carta_radioButtonActionPerformed
-
-    private void cita_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cita_radioButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cita_radioButtonActionPerformed
+    private void chef_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chef_radioButtonActionPerformed
+                JRadioButton selectedItem = (JRadioButton) evt.getSource();
+        cucineTypeChanged(selectedItem);
+    }//GEN-LAST:event_chef_radioButtonActionPerformed
 
     private void noNeed_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noNeed_radioButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_noNeed_radioButtonActionPerformed
 
-    private void lounge_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lounge_comboBoxActionPerformed
-
-    }//GEN-LAST:event_lounge_comboBoxActionPerformed
-
     private void needRooms_checkboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_needRooms_checkboxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_needRooms_checkboxActionPerformed
 
-    private void name_txtfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_txtfieldActionPerformed
-        checkName();
-    }//GEN-LAST:event_name_txtfieldActionPerformed
-
-    private void congreso_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congreso_radioButtonActionPerformed
-        activateCongress();    }//GEN-LAST:event_congreso_radioButtonActionPerformed
-
-    private void jornada_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jornada_radioButtonActionPerformed
-        desactivateCongress();    }//GEN-LAST:event_jornada_radioButtonActionPerformed
+    private void name_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_txtFieldActionPerformed
+        nameChanged();
+    }//GEN-LAST:event_name_txtFieldActionPerformed
 
 
     private void fullfill_progressBarAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_fullfill_progressBarAncestorAdded
-
         fullfill_progressBar.setStringPainted(true);
         fullfill_progressBar.setString(String.format("Completado %d%% del formulario.\n", 0));
         fullfill_progressBar.setValue(1);
     }//GEN-LAST:event_fullfill_progressBarAncestorAdded
 
     private void fullfill_progressBarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fullfill_progressBarStateChanged
-        System.out.printf("bar state = %d; bar Max = %d%n",
-                fullfill_progressBar.getValue(), fullfill_progressBar.getMaximum());
 
-        if (fullfill_progressBar.getValue() == fullfill_progressBar.getMaximum()) {
-
-        }
     }//GEN-LAST:event_fullfill_progressBarStateChanged
 
-    private void name_txtfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_name_txtfieldFocusLost
-        checkName();
+    private void name_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_name_txtFieldFocusLost
+        nameChanged();
+    }//GEN-LAST:event_name_txtFieldFocusLost
 
-    }//GEN-LAST:event_name_txtfieldFocusLost
+    private void phone_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phone_txtFieldActionPerformed
+        phoneChanged();
+    }//GEN-LAST:event_phone_txtFieldActionPerformed
+
+    private void phone_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phone_txtFieldFocusLost
+        phoneChanged();
+    }//GEN-LAST:event_phone_txtFieldFocusLost
+
+    private void date_spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_date_spinnerStateChanged
+        dateTimeChanged();
+    }//GEN-LAST:event_date_spinnerStateChanged
+
+    private void lounge_comboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_lounge_comboBoxItemStateChanged
+        loungeChanged();
+    }//GEN-LAST:event_lounge_comboBoxItemStateChanged
+
+    private void banquet_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_banquet_radioButtonActionPerformed
+        JRadioButton selectedItem = (JRadioButton) evt.getSource();
+        eventTypeChanged(selectedItem);
+    }//GEN-LAST:event_banquet_radioButtonActionPerformed
+
+    private void day_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_day_radioButtonActionPerformed
+        JRadioButton selectedItem = (JRadioButton) evt.getSource();
+        eventTypeChanged(selectedItem);
+    }//GEN-LAST:event_day_radioButtonActionPerformed
+
+    private void congress_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congress_radioButtonActionPerformed
+        JRadioButton selectedItem = (JRadioButton) evt.getSource();
+        eventTypeChanged(selectedItem);
+    }//GEN-LAST:event_congress_radioButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton banquete_radioButton;
-    private javax.swing.JRadioButton bufet_radioButton;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JRadioButton carta_radioButton;
-    private javax.swing.JRadioButton cita_radioButton;
+    private javax.swing.JRadioButton aLaCarte_radioButton;
+    private javax.swing.JRadioButton banquet_radioButton;
+    private javax.swing.JRadioButton buffet_radioButton;
+    private javax.swing.JRadioButton chef_radioButton;
     private javax.swing.JPanel clientData_container;
-    private javax.swing.JRadioButton congreso_radioButton;
+    private javax.swing.JLabel congressDays_label;
+    private javax.swing.JSlider congressDays_slider;
     private javax.swing.JPanel congress_container;
-    private javax.swing.JPanel cucine_container;
-    private javax.swing.JLabel cucine_label;
+    private javax.swing.JRadioButton congress_radioButton;
+    private javax.swing.ButtonGroup cuisineType_buttonGroup;
+    private javax.swing.JPanel cuisine_container;
+    private javax.swing.JLabel cuisine_label;
     private javax.swing.JPanel dataEvent_container;
     private javax.swing.JPanel dataLounge_container;
     private javax.swing.JLabel date_label;
     private javax.swing.JSpinner date_spinner;
+    private javax.swing.JRadioButton day_radioButton;
     private javax.swing.JPanel detailEvent_container;
     private javax.swing.JPanel evenType_container;
     private javax.swing.JLabel evenType_label;
+    private javax.swing.ButtonGroup eventType_buttonGroup;
     private javax.swing.JProgressBar fullfill_progressBar;
-    private javax.swing.JRadioButton jornada_radioButton;
-    private javax.swing.JLabel jornadasNum_label;
-    private javax.swing.JSlider jornadasNum_slider;
     private javax.swing.JComboBox<String> lounge_comboBox;
     private javax.swing.JLabel lounge_label;
     private javax.swing.JLabel name_label;
-    private javax.swing.JTextField name_txtfield;
+    private javax.swing.JTextField name_txtField;
     private javax.swing.JCheckBox needRooms_checkbox;
     private javax.swing.JLabel needRooms_label;
     private javax.swing.JPanel newBookLounge_Container;
     private javax.swing.JRadioButton noNeed_radioButton;
+    private javax.swing.JLabel phone_label;
+    private javax.swing.JTextField phone_txtField;
     private javax.swing.JButton save_button;
-    private javax.swing.JFormattedTextField tfno_formatTxtField;
-    private javax.swing.JLabel tfno_label;
     // End of variables declaration//GEN-END:variables
+
+    private void nameChanged() {
+        checkName();
+        updateProgressBar();
+    }
+
+    private void phoneChanged() {
+        checkPhone();
+        updateProgressBar();
+    }
+
+    private void dateTimeChanged() {
+        JSpinner.DateEditor jsEditor
+                = (JSpinner.DateEditor) date_spinner.getEditor();
+
+        System.out.printf("%s \"%s\" - ", "new date/time: ",
+                date_spinner.getValue().toString());
+        System.out.printf("%s%n", "is valid");
+
+        barProgress[BarIndex.DATETIME.ordinal()] = Boolean.TRUE;
+        // No work; change to original color (white)
+        jsEditor.setBackground(Color.GREEN);
+        updateProgressBar();
+
+    }
+
+    private void loungeChanged() {
+        System.out.printf("%s \"%s\" - ", "new lounge: ",
+                lounge_comboBox.getSelectedItem().toString());
+
+        if (!lounge_comboBox.getSelectedItem().toString().equalsIgnoreCase("Pendiente")) {
+            System.out.printf("%s%n", "is valid");
+            barProgress[BarIndex.LOUNGE.ordinal()] = Boolean.TRUE;
+
+            lounge_comboBox.setBackground(Color.GREEN);
+        } else {
+            System.out.printf("%s%n", "is not valid");
+            barProgress[BarIndex.LOUNGE.ordinal()] = Boolean.FALSE;
+
+            lounge_comboBox.setBackground(Color.RED);
+            lounge_comboBox.repaint();
+
+        }
+
+        updateProgressBar();
+    }
+
+    private void cucineTypeChanged(JRadioButton selectedItem) {
+        String eventTypeSelected = selectedItem.getText();
+        System.out.printf("new cucine type: %s%n", eventTypeSelected);
+        barProgress[BarIndex.CUISINETYPE.ordinal()] = Boolean.TRUE;
+
+        updateProgressBar();
+    }
+
+    private void eventTypeChanged(JRadioButton selectedItem) {
+        String eventTypeSelected = selectedItem.getText();
+        System.out.printf("new event type: %s%n", eventTypeSelected);
+
+        barProgress[BarIndex.EVENTTYPE.ordinal()] = Boolean.TRUE;
+
+        if (eventTypeSelected.equalsIgnoreCase("congreso")) {
+            activateCongress();
+        } else {
+            desactivateCongress();
+        }
+        selectedItem.setBackground(Color.GREEN);
+        selectedItem.repaint();
+        updateProgressBar();
+    }
 
     private void activateCongress() {
         congress_container.setVisible(true);
@@ -609,14 +718,95 @@ public class LoungeNewBook extends javax.swing.JDialog {
         this.setSize(WIDTH, 510);
     }
 
-    private void checkName() {
-        System.out.printf("%s \"%s\" - ", "Actual name: ", name_txtfield.getText());
-        if (name_txtfield.getText().matches("([a-zA-Z]+ ?)+")) {
-            progress[CheckedData.NAME.ordinal()] = true;
-            System.out.printf("%s%n", "es válido");
-        } else {
-            progress[CheckedData.NAME.ordinal()] = false;
-            System.out.printf("%s%n", "no es válido");
+    private void updateProgressBar() {
+        int porcent = 0;
+        for (BarIndex p : BarIndex.values()) {
+            switch (p) {
+                case NAME:
+                    if (barProgress[p.ordinal()]) {
+                        porcent += 15;
+                    }
+                    break;
+                case PHONE:
+                    if (barProgress[p.ordinal()]) {
+                        porcent += 15;
+                    }
+                    break;
+                case DATETIME:
+                    if (barProgress[p.ordinal()]) {
+                        porcent += 15;
+                    }
+                    break;
+                case LOUNGE:
+                    if (barProgress[p.ordinal()]) {
+                        porcent += 15;
+                    }
+                    break;
+                case EVENTTYPE:
+                    if (congress_container.isVisible()) {
+                        if (barProgress[p.ordinal()]) {
+                            porcent += 7;
+                        }
+                    } else {
+                        if (barProgress[p.ordinal()]) {
+                            porcent += 15;
+                        }
+                    }
+                    break;
+                case CUISINETYPE:
+                    if (barProgress[p.ordinal()]) {
+                        porcent += 15;
+                    }
+                    break;
+                case DAYSCONGRESS:
+                    if (barProgress[p.ordinal()]) {
+                        porcent += 15;
+                    }
+                    break;
+            }
+        }
+        fullfill_progressBar.setValue(porcent);
+        System.out.printf("bar state = %d; bar Max = %d%n",
+                porcent, fullfill_progressBar.getMaximum());
+
+        if (fullfill_progressBar.getValue() == fullfill_progressBar.getMaximum()) {
+
         }
     }
+
+    private void checkName() {
+        int index = BarIndex.NAME.ordinal();
+
+        System.out.printf("%s \"%s\" - ", "new name: ", name_txtField.getText());
+
+        if (name_txtField.getText().matches("([a-zA-Z]+ ?)+")) {
+            System.out.printf("%s%n", "is valid");
+
+            barProgress[index] = Boolean.TRUE;
+            name_txtField.setBackground(Color.GREEN);
+        } else {
+            System.out.printf("%s%n", "is not valid");
+
+            barProgress[index] = Boolean.FALSE;
+            name_txtField.setBackground(new Color(255, 130, 130));
+        }
+    }
+
+    private void checkPhone() {
+        int index = BarIndex.PHONE.ordinal();
+        System.out.printf("%s \"%s\" - ", "new phone: ", phone_txtField.getText());
+
+        if (phone_txtField.getText().matches("^[\\d ()+]+$")) {
+            System.out.printf("%s%n", "is valid");
+
+            barProgress[index] = Boolean.TRUE;
+            phone_txtField.setBackground(Color.GREEN);
+        } else {
+            System.out.printf("%s%n", "is not valid");
+            barProgress[index] = Boolean.FALSE;
+            phone_txtField.setBackground(new Color(255, 130, 130));
+        }
+
+    }
+
 }
