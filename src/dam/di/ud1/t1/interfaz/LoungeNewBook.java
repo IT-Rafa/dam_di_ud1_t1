@@ -6,19 +6,16 @@
 package dam.di.ud1.t1.interfaz;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JList;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.UIManager;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.basic.BasicComboPopup;
 
+import dam.di.ud1.t1.data.HotelLucho;
 /**
  *
  * @author it-ra
@@ -28,10 +25,9 @@ public class LoungeNewBook extends javax.swing.JDialog {
     public enum BarIndex {
         NAME, PHONE, DATETIME, LOUNGE, EVENTTYPE, CUISINETYPE, DAYSCONGRESS
     };
-    private boolean[] barProgress;
-
-    JSpinner mySpinner = new JSpinner(new SpinnerDateModel(new Date(), null, null, Calendar.MONTH));
-
+    private final boolean[] checkedProgress;
+    private final HotelLucho data = new HotelLucho();
+    
     /**
      * Creates new form LoungeNewBook
      *
@@ -39,22 +35,9 @@ public class LoungeNewBook extends javax.swing.JDialog {
      * @param modal
      */
     public LoungeNewBook(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        this.barProgress = new boolean[BarIndex.values().length];
-        JSpinner.DateEditor editor = new JSpinner.DateEditor(mySpinner, "dd/MM/yy");
-        mySpinner.setEditor(editor);
+        this.checkedProgress = new boolean[BarIndex.values().length];
+
         initComponents();
-        /*
-            1º name
-            2º tfno
-            3º fecha
-            4º salon
-            5º tipo evento
-            6º tipo cocina
-        --
-            7º cant jornadas
-            8º precisa habitaciones
-         */
 
     }
 
@@ -110,10 +93,11 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         newBookLounge_Container.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        clientData_container.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos cliente"));
+        clientData_container.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 11))); // NOI18N
 
         name_label.setText("Nombre:");
 
+        name_txtField.setToolTipText("Nombre completo del contacto que hace la reserva");
         name_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 name_txtFieldFocusLost(evt);
@@ -127,6 +111,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         phone_label.setText("Teléfono:");
 
+        phone_txtField.setToolTipText("Teléfono del contacto que hace la reserva");
         phone_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 phone_txtFieldFocusLost(evt);
@@ -149,7 +134,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
                     .addComponent(phone_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(clientData_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(name_txtField, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                    .addComponent(name_txtField, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
                     .addGroup(clientData_containerLayout.createSequentialGroup()
                         .addComponent(phone_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -168,13 +153,14 @@ public class LoungeNewBook extends javax.swing.JDialog {
                     .addComponent(phone_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        dataEvent_container.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos evento"));
+        dataEvent_container.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos evento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 11))); // NOI18N
 
         dataLounge_container.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         date_label.setText("Fecha");
 
         date_spinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(1634437603377L), null, java.util.Calendar.DAY_OF_MONTH));
+        date_spinner.setToolTipText("Día y hora del inicio de la reserva");
         date_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 date_spinnerStateChanged(evt);
@@ -184,6 +170,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
         lounge_label.setText("Salón:");
 
         lounge_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendiente", "Salon Habana", "Salón Otro" }));
+        lounge_comboBox.setToolTipText("Salón elegido para celebrar el evento");
         lounge_comboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 lounge_comboBoxItemStateChanged(evt);
@@ -202,7 +189,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lounge_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lounge_comboBox, 0, 194, Short.MAX_VALUE)
+                .addComponent(lounge_comboBox, 0, 205, Short.MAX_VALUE)
                 .addContainerGap())
         );
         dataLounge_containerLayout.setVerticalGroup(
@@ -226,6 +213,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         eventType_buttonGroup.add(banquet_radioButton);
         banquet_radioButton.setText("Banquete");
+        banquet_radioButton.setToolTipText("Reunión para comer");
         banquet_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 banquet_radioButtonActionPerformed(evt);
@@ -234,6 +222,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         eventType_buttonGroup.add(day_radioButton);
         day_radioButton.setText("Jornada");
+        day_radioButton.setToolTipText("Reunión de un día");
         day_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 day_radioButtonActionPerformed(evt);
@@ -242,6 +231,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         eventType_buttonGroup.add(congress_radioButton);
         congress_radioButton.setText("Congreso");
+        congress_radioButton.setToolTipText("Reuniones varios días");
         congress_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 congress_radioButtonActionPerformed(evt);
@@ -253,17 +243,16 @@ public class LoungeNewBook extends javax.swing.JDialog {
         evenType_containerLayout.setHorizontalGroup(
             evenType_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(evenType_containerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(evenType_label)
+                .addContainerGap(83, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, evenType_containerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(evenType_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(evenType_containerLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(evenType_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(congress_radioButton)
-                            .addComponent(day_radioButton)
-                            .addComponent(banquet_radioButton)))
-                    .addGroup(evenType_containerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(evenType_label)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addComponent(congress_radioButton)
+                    .addComponent(day_radioButton)
+                    .addComponent(banquet_radioButton))
+                .addGap(56, 56, 56))
         );
         evenType_containerLayout.setVerticalGroup(
             evenType_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,11 +281,16 @@ public class LoungeNewBook extends javax.swing.JDialog {
         congressDays_slider.setPaintLabels(true);
         congressDays_slider.setPaintTicks(true);
         congressDays_slider.setSnapToTicks(true);
-        congressDays_slider.setToolTipText("");
-        congressDays_slider.setValue(20);
+        congressDays_slider.setToolTipText("Cantidad de días que durará el congreso");
+        congressDays_slider.setValue(0);
+        congressDays_slider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                congressDays_sliderStateChanged(evt);
+            }
+        });
 
         needRooms_label.setText("Precisa habitaciones:");
-        needRooms_label.setToolTipText("");
+        needRooms_label.setToolTipText("Los invitados del congreso precisan alojamiento");
 
         needRooms_checkbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         needRooms_checkbox.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -321,7 +315,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
                         .addComponent(needRooms_label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(needRooms_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         congress_containerLayout.setVerticalGroup(
             congress_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,6 +341,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         cuisineType_buttonGroup.add(buffet_radioButton);
         buffet_radioButton.setText("Bufé");
+        buffet_radioButton.setToolTipText("Mesas de autoservicio");
         buffet_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buffet_radioButtonActionPerformed(evt);
@@ -355,6 +350,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         cuisineType_buttonGroup.add(aLaCarte_radioButton);
         aLaCarte_radioButton.setText("Carta");
+        aLaCarte_radioButton.setToolTipText("Mesas asignadas con varios platos preseleccionados");
         aLaCarte_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aLaCarte_radioButtonActionPerformed(evt);
@@ -363,6 +359,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         cuisineType_buttonGroup.add(chef_radioButton);
         chef_radioButton.setText("Cita con chef");
+        chef_radioButton.setToolTipText("Concertar cita con chef");
         chef_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chef_radioButtonActionPerformed(evt);
@@ -371,6 +368,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
 
         cuisineType_buttonGroup.add(noNeed_radioButton);
         noNeed_radioButton.setText("No precisa");
+        noNeed_radioButton.setToolTipText("No usan nuestro servicio de cocina");
         noNeed_radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 noNeed_radioButtonActionPerformed(evt);
@@ -422,7 +420,7 @@ public class LoungeNewBook extends javax.swing.JDialog {
                         .addComponent(evenType_container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cuisine_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(congress_container, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
+                    .addComponent(congress_container, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE))
                 .addContainerGap())
         );
         detailEvent_containerLayout.setVerticalGroup(
@@ -438,25 +436,13 @@ public class LoungeNewBook extends javax.swing.JDialog {
         );
 
         fullfill_progressBar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        fullfill_progressBar.setToolTipText("");
+        fullfill_progressBar.setForeground(java.awt.Color.green);
+        fullfill_progressBar.setToolTipText("Barra para indicar progreso de finalización del formulario");
         fullfill_progressBar.setValue(20);
         fullfill_progressBar.setName(""); // NOI18N
-        fullfill_progressBar.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                fullfill_progressBarAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        fullfill_progressBar.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                fullfill_progressBarStateChanged(evt);
-            }
-        });
 
         save_button.setText("Guardar");
+        save_button.setToolTipText("Botón para hacer la reserva (inactivo hasta completar formulario)");
         save_button.setEnabled(false);
 
         javax.swing.GroupLayout dataEvent_containerLayout = new javax.swing.GroupLayout(dataEvent_container);
@@ -534,17 +520,18 @@ public class LoungeNewBook extends javax.swing.JDialog {
     }//GEN-LAST:event_buffet_radioButtonActionPerformed
 
     private void aLaCarte_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aLaCarte_radioButtonActionPerformed
-                JRadioButton selectedItem = (JRadioButton) evt.getSource();
+        JRadioButton selectedItem = (JRadioButton) evt.getSource();
         cucineTypeChanged(selectedItem);
     }//GEN-LAST:event_aLaCarte_radioButtonActionPerformed
 
     private void chef_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chef_radioButtonActionPerformed
-                JRadioButton selectedItem = (JRadioButton) evt.getSource();
+        JRadioButton selectedItem = (JRadioButton) evt.getSource();
         cucineTypeChanged(selectedItem);
     }//GEN-LAST:event_chef_radioButtonActionPerformed
 
     private void noNeed_radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noNeed_radioButtonActionPerformed
-        // TODO add your handling code here:
+        JRadioButton selectedItem = (JRadioButton) evt.getSource();
+        cucineTypeChanged(selectedItem);
     }//GEN-LAST:event_noNeed_radioButtonActionPerformed
 
     private void needRooms_checkboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_needRooms_checkboxActionPerformed
@@ -555,16 +542,6 @@ public class LoungeNewBook extends javax.swing.JDialog {
         nameChanged();
     }//GEN-LAST:event_name_txtFieldActionPerformed
 
-
-    private void fullfill_progressBarAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_fullfill_progressBarAncestorAdded
-        fullfill_progressBar.setStringPainted(true);
-        fullfill_progressBar.setString(String.format("Completado %d%% del formulario.\n", 0));
-        fullfill_progressBar.setValue(1);
-    }//GEN-LAST:event_fullfill_progressBarAncestorAdded
-
-    private void fullfill_progressBarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fullfill_progressBarStateChanged
-
-    }//GEN-LAST:event_fullfill_progressBarStateChanged
 
     private void name_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_name_txtFieldFocusLost
         nameChanged();
@@ -600,6 +577,10 @@ public class LoungeNewBook extends javax.swing.JDialog {
         JRadioButton selectedItem = (JRadioButton) evt.getSource();
         eventTypeChanged(selectedItem);
     }//GEN-LAST:event_congress_radioButtonActionPerformed
+
+    private void congressDays_sliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_congressDays_sliderStateChanged
+        congressDaysChanged();
+    }//GEN-LAST:event_congressDays_sliderStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -652,60 +633,74 @@ public class LoungeNewBook extends javax.swing.JDialog {
         JSpinner.DateEditor jsEditor
                 = (JSpinner.DateEditor) date_spinner.getEditor();
 
-        System.out.printf("%s \"%s\" - ", "new date/time: ",
-                date_spinner.getValue().toString());
-        System.out.printf("%s%n", "is valid");
-
-        barProgress[BarIndex.DATETIME.ordinal()] = Boolean.TRUE;
-        // No work; change to original color (white)
+        checkedProgress[BarIndex.DATETIME.ordinal()] = Boolean.TRUE;
         jsEditor.setBackground(Color.GREEN);
         updateProgressBar();
 
     }
 
     private void loungeChanged() {
-        System.out.printf("%s \"%s\" - ", "new lounge: ",
-                lounge_comboBox.getSelectedItem().toString());
 
         if (!lounge_comboBox.getSelectedItem().toString().equalsIgnoreCase("Pendiente")) {
-            System.out.printf("%s%n", "is valid");
-            barProgress[BarIndex.LOUNGE.ordinal()] = Boolean.TRUE;
+            checkedProgress[BarIndex.LOUNGE.ordinal()] = Boolean.TRUE;
 
             lounge_comboBox.setBackground(Color.GREEN);
         } else {
-            System.out.printf("%s%n", "is not valid");
-            barProgress[BarIndex.LOUNGE.ordinal()] = Boolean.FALSE;
+            checkedProgress[BarIndex.LOUNGE.ordinal()] = Boolean.FALSE;
 
             lounge_comboBox.setBackground(Color.RED);
             lounge_comboBox.repaint();
-
         }
 
         updateProgressBar();
     }
 
     private void cucineTypeChanged(JRadioButton selectedItem) {
-        String eventTypeSelected = selectedItem.getText();
-        System.out.printf("new cucine type: %s%n", eventTypeSelected);
-        barProgress[BarIndex.CUISINETYPE.ordinal()] = Boolean.TRUE;
+        checkedProgress[BarIndex.CUISINETYPE.ordinal()] = Boolean.TRUE;
 
+        for (Enumeration<AbstractButton> buttons = cuisineType_buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            if (button == selectedItem) {
+                button.setOpaque(true);
+                button.setBackground(Color.GREEN);
+            } else {
+                button.setOpaque(false);
+            }
+        }
         updateProgressBar();
     }
 
     private void eventTypeChanged(JRadioButton selectedItem) {
-        String eventTypeSelected = selectedItem.getText();
-        System.out.printf("new event type: %s%n", eventTypeSelected);
+        checkedProgress[BarIndex.EVENTTYPE.ordinal()] = Boolean.TRUE;
 
-        barProgress[BarIndex.EVENTTYPE.ordinal()] = Boolean.TRUE;
-
-        if (eventTypeSelected.equalsIgnoreCase("congreso")) {
+        if (selectedItem.getText().equalsIgnoreCase("congreso")) {
             activateCongress();
         } else {
             desactivateCongress();
         }
-        selectedItem.setBackground(Color.GREEN);
-        selectedItem.repaint();
+
+        for (Enumeration<AbstractButton> buttons = eventType_buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            if (button == selectedItem) {
+                button.setOpaque(true);
+                button.setBackground(Color.GREEN);
+            } else {
+                button.setOpaque(false);
+            }
+        }
+
         updateProgressBar();
+    }
+
+    private void congressDaysChanged() {
+        if (congressDays_slider.getValue() != 0) {
+            checkedProgress[BarIndex.DAYSCONGRESS.ordinal()] = true;
+            updateProgressBar();
+        } else {
+            checkedProgress[BarIndex.DAYSCONGRESS.ordinal()] = false;
+            updateProgressBar();
+        }
+
     }
 
     private void activateCongress() {
@@ -723,87 +718,78 @@ public class LoungeNewBook extends javax.swing.JDialog {
         for (BarIndex p : BarIndex.values()) {
             switch (p) {
                 case NAME:
-                    if (barProgress[p.ordinal()]) {
-                        porcent += 15;
+                    if (checkedProgress[p.ordinal()]) {
+                        porcent += 17;
                     }
                     break;
                 case PHONE:
-                    if (barProgress[p.ordinal()]) {
-                        porcent += 15;
+                    if (checkedProgress[p.ordinal()]) {
+                        porcent += 17;
                     }
                     break;
                 case DATETIME:
-                    if (barProgress[p.ordinal()]) {
-                        porcent += 15;
+                    if (checkedProgress[p.ordinal()]) {
+                        porcent += 17;
                     }
                     break;
                 case LOUNGE:
-                    if (barProgress[p.ordinal()]) {
-                        porcent += 15;
+                    if (checkedProgress[p.ordinal()]) {
+                        porcent += 17;
                     }
                     break;
                 case EVENTTYPE:
                     if (congress_container.isVisible()) {
-                        if (barProgress[p.ordinal()]) {
-                            porcent += 7;
+                        if (checkedProgress[p.ordinal()]) {
+                            porcent += 8;
                         }
                     } else {
-                        if (barProgress[p.ordinal()]) {
-                            porcent += 15;
+                        if (checkedProgress[p.ordinal()]) {
+                            porcent += 16;
                         }
                     }
                     break;
                 case CUISINETYPE:
-                    if (barProgress[p.ordinal()]) {
-                        porcent += 15;
+                    if (checkedProgress[p.ordinal()]) {
+                        porcent += 16;
                     }
                     break;
                 case DAYSCONGRESS:
-                    if (barProgress[p.ordinal()]) {
-                        porcent += 15;
+                    if (checkedProgress[p.ordinal()]) {
+                        porcent += 8;
                     }
                     break;
             }
         }
         fullfill_progressBar.setValue(porcent);
-        System.out.printf("bar state = %d; bar Max = %d%n",
-                porcent, fullfill_progressBar.getMaximum());
 
-        if (fullfill_progressBar.getValue() == fullfill_progressBar.getMaximum()) {
-
+        if (porcent == fullfill_progressBar.getMaximum()) {
+            UIManager.put("nimbusOrange", Color.GREEN);
+            save_button.setEnabled(true);
+        } else {
+            save_button.setEnabled(false);
         }
     }
 
     private void checkName() {
         int index = BarIndex.NAME.ordinal();
 
-        System.out.printf("%s \"%s\" - ", "new name: ", name_txtField.getText());
-
         if (name_txtField.getText().matches("([a-zA-Z]+ ?)+")) {
-            System.out.printf("%s%n", "is valid");
-
-            barProgress[index] = Boolean.TRUE;
+            checkedProgress[index] = Boolean.TRUE;
             name_txtField.setBackground(Color.GREEN);
         } else {
-            System.out.printf("%s%n", "is not valid");
-
-            barProgress[index] = Boolean.FALSE;
+            checkedProgress[index] = Boolean.FALSE;
             name_txtField.setBackground(new Color(255, 130, 130));
         }
     }
 
     private void checkPhone() {
         int index = BarIndex.PHONE.ordinal();
-        System.out.printf("%s \"%s\" - ", "new phone: ", phone_txtField.getText());
 
         if (phone_txtField.getText().matches("^[\\d ()+]+$")) {
-            System.out.printf("%s%n", "is valid");
-
-            barProgress[index] = Boolean.TRUE;
+            checkedProgress[index] = Boolean.TRUE;
             phone_txtField.setBackground(Color.GREEN);
         } else {
-            System.out.printf("%s%n", "is not valid");
-            barProgress[index] = Boolean.FALSE;
+            checkedProgress[index] = Boolean.FALSE;
             phone_txtField.setBackground(new Color(255, 130, 130));
         }
 

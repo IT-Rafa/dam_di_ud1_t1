@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Menu class="javax.swing.JMenuBar" name="menuBar_container">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="rooms_menu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Habitaciones"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="lounges_menu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Salones"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="bookLounge_menu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reservas salones"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="newBookLounge_menuitem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nueva reserva"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newBookLounge_menuitemActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="manageBooksLounge_menuitem">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Gestionar reservas"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="manageLounge">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gesti&#xf3;n salones"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Hotel Lucho Gesti&#xf3;n"/>
+    <Property name="locationByPlatform" type="boolean" value="true"/>
     <Property name="name" type="java.lang.String" value="mainApp" noResource="true"/>
   </Properties>
   <AccessibilityProperties>
     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="mainApp"/>
   </AccessibilityProperties>
   <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar_container"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -45,7 +100,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="title_container" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="menus_container" min="-2" pref="288" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -55,9 +110,12 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="title_container">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
           </Border>
         </Property>
       </Properties>
@@ -65,24 +123,34 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                  <Component id="hotel_label" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="69" max="32767" attributes="0"/>
+              <Component id="hotel_label" min="-2" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="hotel_label">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="MV Boli" size="36" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Hotel Lucho"/>
+          </Properties>
+        </Component>
+      </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="menus_container">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
-          </Border>
-        </Property>
-      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
@@ -90,7 +158,9 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Men&#xfa; principal"/>
+                <TitledBorder title="Men&#xfa; principal">
+                  <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
@@ -124,7 +194,7 @@
                       <Component id="lounges_button" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rooms_button" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="102" max="32767" attributes="0"/>
+                      <EmptySpace pref="101" max="32767" attributes="0"/>
                       <Component id="exit_button0" min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -137,6 +207,7 @@
                   <Font name="Verdana" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salones"/>
+                <Property name="toolTipText" type="java.lang.String" value="Gesti&#xf3;n de los salones"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lounges_buttonActionPerformed"/>
@@ -148,6 +219,7 @@
                   <Font name="Verdana" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Habitaciones"/>
+                <Property name="toolTipText" type="java.lang.String" value="Gesti&#xf3;n de las habitaciones"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="exit_button0">
@@ -156,6 +228,7 @@
                   <Font name="Verdana" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="SALIR"/>
+                <Property name="toolTipText" type="java.lang.String" value="Finalizar la aplicaci&#xf3;n"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exit_button0ActionPerformed"/>
@@ -167,7 +240,9 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Salones"/>
+                <TitledBorder title="Salones">
+                  <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
@@ -202,7 +277,7 @@
                       <Component id="loungeManage_button" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="loungeBooks_button" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="102" max="32767" attributes="0"/>
+                      <EmptySpace pref="101" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="exit_button1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="back_button1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
@@ -217,8 +292,8 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Verdana" size="24" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Reserva sal&#xf3;n"/>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="text" type="java.lang.String" value="Reservas salones"/>
+                <Property name="toolTipText" type="java.lang.String" value="Crear o modificar las reservas de los salones"/>
                 <Property name="actionCommand" type="java.lang.String" value="Reserva salon"/>
               </Properties>
               <Events>
@@ -231,6 +306,7 @@
                   <Font name="Verdana" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Gesti&#xf3;n salones"/>
+                <Property name="toolTipText" type="java.lang.String" value="Crear o modificar los salones actuales"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loungeBooks_buttonActionPerformed"/>
@@ -242,6 +318,7 @@
                   <Font name="Verdana" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Volver"/>
+                <Property name="toolTipText" type="java.lang.String" value="Volver al men&#xfa; anterior"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back_button1ActionPerformed"/>
@@ -253,6 +330,7 @@
                   <Font name="Verdana" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="SALIR"/>
+                <Property name="toolTipText" type="java.lang.String" value="Finalizar la aplicaci&#xf3;n"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exit_button1ActionPerformed"/>
@@ -264,7 +342,9 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Reserva sal&#xf3;n"/>
+                <TitledBorder title="Reserva sal&#xf3;n">
+                  <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
@@ -299,7 +379,7 @@
                       <Component id="newBookLounge_button" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rooms_button2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="102" max="32767" attributes="0"/>
+                      <EmptySpace pref="101" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="exit_button2" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="back_button2" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
@@ -315,6 +395,7 @@
                   <Font name="Verdana" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nueva"/>
+                <Property name="toolTipText" type="java.lang.String" value="Nueva reserva de un sal&#xf3;n"/>
                 <Property name="actionCommand" type="java.lang.String" value="Nueva reserva"/>
               </Properties>
               <Events>
@@ -327,6 +408,7 @@
                   <Font name="Verdana" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Modificar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Modificar las reserva de salones actuales"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="back_button2">
@@ -335,6 +417,7 @@
                   <Font name="Verdana" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Volver"/>
+                <Property name="toolTipText" type="java.lang.String" value="Volver al men&#xfa; anterior"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back_button2ActionPerformed"/>
@@ -346,6 +429,7 @@
                   <Font name="Verdana" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="SALIR"/>
+                <Property name="toolTipText" type="java.lang.String" value="Finalizar la aplicaci&#xf3;n"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exit_button2ActionPerformed"/>
